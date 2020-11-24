@@ -1,0 +1,47 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "mySubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": "vpc-0224dc182f74de30e",
+        "CidrBlock": "10.25.2.0/24",
+        "AvailabilityZone": "ap-southeast-2b",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "airtel-dmz2"
+          }
+        ]
+      }
+    },
+    "testSubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": "vpc-0224dc182f74de30e",
+        "CidrBlock": "10.25.3.0/24",
+        "AvailabilityZone": "ap-southeast-2c",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "airtel-dmz3"
+          }
+        ]
+      }
+    },
+    "ProdSubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": "vpc-0224dc182f74de30e",
+        "CidrBlock": "10.25.4.0/24",
+        "AvailabilityZone": "ap-southeast-2a",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "airtel-dmz4"
+          }
+        ]
+      }
+    }
+  }
+}
