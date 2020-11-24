@@ -1,0 +1,60 @@
+What are the different ways to isolate Private and DMZ subnets?
+
+ACLs and SGS
+
+Difference between NAT instances and NAT gateway? Explain the situation as when to use NAT gateway. 
+
+Can we create a subnet with subnet mask /29. 
+
+How to make a private instance public. 
+
+explain a 3 tier architecture. 
+
+How can I prevent traffic from a specific IPs. 
+
+How do I connect On premises network with VPC?
+
+What is egress only with internet Gateway?
+
+How many types of Gateways are present in VPC?
+
+Difference b/w IAM role vs user.
+
+Where are snapshots stored?
+
+Different types of encryption options for s3
+
+Classify instances. 
+
+Move a volume from one AZ to another AZ in same region
+
+Enable connection b/w VPC and S3 as a private  channel - EndPoints
+
+Different ways to create a file in linux - Min 5 ways gedit and nano
+
+
+command to copy files from laptop to remote linux system 
+
+Different types of volumes in EBS 
+
+When you create a bucket where is the resource created. 
+
+Difference between Standard-IA vs One Zone stoarge in S3
+
+What is difference b/w wholistic and incremental Snapshot
+
+what type of storage is s3?  File? Network? Object? Images? 
+
+
+Whos controls OS in PAAS? - Vendor
+
+How can you provide security to S3 buckets. 
+
+Importance of Tagging - Identification
+
+Different ways to copy files to s3 buckets cp, mv, sync + Replication
+
+Pre - req for enabling replication in  a bucket
+
+
+

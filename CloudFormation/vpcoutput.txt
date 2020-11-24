@@ -1,0 +1,181 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Resources": {
+		"myVPC": {
+			"Type": "AWS::EC2::VPC",
+			"Properties": {
+				"CidrBlock": "10.25.0.0/16",
+				"EnableDnsSupport": "false",
+				"EnableDnsHostnames": "false",
+				"InstanceTenancy": "dedicated",
+				"Tags": [{
+					"Key": "Name",
+					"Value": "cisco-vpc"
+				}]
+			}
+		},
+		"mySubnet": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Ref": "myVPC"
+				},
+				"CidrBlock": "10.25.0.0/24",
+				"AvailabilityZone": "ap-southeast-2a",
+				"Tags": [{
+					"Key": "name",
+					"Value": "cisco-sub1"
+				}]
+			}
+		},
+		"prodSubnet": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Ref": "myVPC"
+				},
+				"CidrBlock": "10.25.1.0/24",
+				"AvailabilityZone": "ap-southeast-2b",
+				"Tags": [{
+					"Key": "name",
+					"Value": "cisco-sub2"
+				}]
+			}
+		},
+		"testSubnet": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Ref": "myVPC"
+				},
+				"CidrBlock": "10.25.2.0/24",
+				"AvailabilityZone": "ap-southeast-2c",
+				"Tags": [{
+					"Key": "name",
+					"Value": "cisco-sub3"
+				}]
+			}
+		},
+		"myRouteTable": {
+			"Type": "AWS::EC2::RouteTable",
+			"Properties": {
+				"VpcId": {
+					"Ref": "myVPC"
+				},
+				"Tags": [{
+					"Key": "Name",
+					"Value": "cisco-rt"
+				}]
+			}
+		},
+		"mySubnetRouteTableAssociation": {
+			"Type": "AWS::EC2::SubnetRouteTableAssociation",
+			"Properties": {
+				"SubnetId": {
+					"Ref": "testSubnet"
+				},
+				"RouteTableId": {
+					"Ref": "myRouteTable"
+				}
+			}
+		},
+		"myInternetGateway": {
+			"Type": "AWS::EC2::InternetGateway",
+			"Properties": {
+				"Tags": [{
+					"Key": "Name",
+					"Value": "cisco-igw"
+				}]
+			}
+		},
+		"AttachGateway": {
+			"Type": "AWS::EC2::VPCGatewayAttachment",
+			"Properties": {
+				"VpcId": {
+					"Ref": "myVPC"
+				},
+				"InternetGatewayId": {
+					"Ref": "myInternetGateway"
+				}
+			}
+		},
+		"myRoute": {
+			"Type": "AWS::EC2::Route",
+			"Properties": {
+				"RouteTableId": {
+					"Ref": "myRouteTable"
+				},
+				"DestinationCidrBlock": "0.0.0.0/0",
+				"GatewayId": {
+					"Ref": "myInternetGateway"
+				}
+			}
+		}
+	},
+	"Outputs": {
+		"VPCId": {
+			"Description": "VPCId of VPC",
+			"Value": {
+				"Ref": "myVPC"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-VPCID"
+				}
+			}
+		},
+		"PublicSubnet0": {
+			"Description": "SubnetId of public subnet 0",
+			"Value": {
+				"Ref": "testSubnet"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-PublicSubnet0"
+				}
+			}
+		},
+		"PublicSubnet1": {
+			"Description": "SubnetId of public subnet 1",
+			"Value": {
+				"Ref": "prodSubnet"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-PublicSubnet1"
+				}
+			}
+		},
+		"PrivateSubnet0": {
+			"Description": "SubnetId of public subnet 2",
+			"Value": {
+				"Ref": "mySubnet"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-PrivateSubnet0"
+				}
+			}
+		},
+		"RouteTable": {
+			"Description": "Route Table for subnets",
+			"Value": {
+				"Ref": "myRouteTable"
+			},
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-RouteTable"
+				}
+			}
+		},
+		"DefaultSecurityGroup": {
+			"Description": "DefaultSecurityGroup Id",
+			"Value": "VPC.DefaultSecurityGroup",
+			"Export": {
+				"Name": {
+					"Fn::Sub": "${AWS::StackName}-DefaultSecurityGroup"
+				}
+			}
+		}
+	}
+}

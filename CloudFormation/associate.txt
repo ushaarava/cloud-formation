@@ -1,0 +1,19 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "testSubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": "subnet-0963ade712aa6c589",
+        "RouteTableId": "rtb-0f478447ace4f94af"
+      }
+    },
+    "mySubnetRouteTableAssociation": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "SubnetId": "subnet-0e25db59339a2d833",
+        "RouteTableId": "rtb-0f478447ace4f94af"
+      }
+    }
+  }
+}

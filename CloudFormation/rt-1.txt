@@ -1,0 +1,17 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "myRouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": "vpc-0224dc182f74de30e",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "rt-1"
+          }
+        ]
+      }
+    }
+  }
+}

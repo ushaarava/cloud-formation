@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "MyEC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-0810abbfb78d37cdf",
+        "KeyName": "terraform",
+        "InstanceType": "t2.micro",
+        "SubnetId": "subnet-31a3804a",
+        "SecurityGroupIds": ["sg-02d28d702be2ae7fc"],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "CFT-Instance"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Resources": {
+		"mySubnet": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"VpcId": {
+					"Fn::ImportValue": "stack-vpc-VPCID"
+				},
+				"CidrBlock": "10.25.3.0/24",
+				"AvailabilityZone": "ap-southeast-2a",
+				"Tags": [{
+					"Key": "Name",
+					"Value": "bar"
+				}]
+			}
+		}
+	}
+}
