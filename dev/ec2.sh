@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pwd=`pwd`
+source $pwd/env.sh
 /usr/local/bin/aws ec2 run-instances \
     --image-id $Image \
     --instance-type $Instancetype \
